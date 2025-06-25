@@ -1,0 +1,99 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Animal {
+  id: Float!
+  name: String!
+  dateOfBirth: String!
+  species: String!
+  breed: String!
+  color: String!
+  weight: Float!
+  person_id: Float!
+}
+
+type SpeciesCount {
+  species: String!
+  count: Float!
+}
+
+type Person {
+  id: ID!
+  lastName: String!
+  firstName: String!
+  email: String!
+  phoneNumber: String!
+}
+
+type PersonAnimalCount {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  count: Float!
+}
+
+type PersonAnimalWeight {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  animalName: String!
+  weight: Float!
+}
+
+type PersonAnimalGroupWeight {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  animalNames: [String!]!
+  weight: Float!
+}
+
+type Query {
+  animals(options: AnimalOrderInput): [Animal!]!
+  animal(id: Float!): Animal!
+  mostRepresentedSpecies: SpeciesCount!
+  persons: [Person!]!
+  person(id: Float!): Person!
+  personWithMostAnimals: PersonAnimalCount!
+  personWithMostCats: PersonAnimalCount!
+  personWithHeaviestAnimal: PersonAnimalWeight!
+  personWithHeaviestAnimalGroup: PersonAnimalGroupWeight!
+}
+
+input AnimalOrderInput {
+  orderBy: [OrderByInput!]! = []
+}
+
+input OrderByInput {
+  field: String!
+  direction: OrderDirection! = ASC
+}
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+type Mutation {
+  createAnimal(input: CreateAnimalInput!): Animal!
+  createPerson(input: CreatePersonInput!): Person!
+}
+
+input CreateAnimalInput {
+  name: String!
+  dateOfBirth: String!
+  species: String!
+  breed: String!
+  color: String!
+  weight: Float!
+  person_id: Float!
+}
+
+input CreatePersonInput {
+  id: ID!
+  lastName: String!
+  firstName: String!
+  email: String!
+  phoneNumber: String!
+}
